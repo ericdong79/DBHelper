@@ -1,0 +1,8 @@
+{
+    "DATABASE_NAME":"PLCDashboard",
+    "ZERO_DB_BACKUP_DIRECTORY":"D:\\ZeroRepo",
+    "NEW_BACKUP_DIRECTORY":"C:\\BACKUPs\\",
+    "CONNECTION_STRING":"DRIVER={SQL Server Native Client 11.0};SERVER=localhost\\test;Trusted_Connection=yes;",
+    "CREATE_BACKUP_BEFORE_UPGRADE":"True",
+    "UPGRADE_SCRIPT_PATH": "c:\\RWS\\Automation\\Web\\Dashboard\\PLCDashboardNew\\Main\\Database\\PLCDashboard\\UpgradeScripts\\Release\\2.4\\update.sql"     
+}
