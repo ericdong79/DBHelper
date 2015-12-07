@@ -134,8 +134,8 @@ def validateConfigOptions(options):
 
 def split_go_to_batch(script):
     '''For SQL clients like pyodbc, GO statement is not recognized so we need to manually split scripts into batches'''
-    goRegex = r'[\n|;]?\s*?GO\s*?[\n|;]'
-    scripts = re.split(goRegex,script)
+    goRegex = r'^s*?GO\s*?$'
+    scripts = re.split(goRegex,script,flags= (re.IGNORECASE | re.MULTILINE))
     return scripts
 
 def get_available_zero_db(zeropath):
@@ -273,9 +273,13 @@ def execute_sql_file(cursor,filepath):
     with open (filepath, "r") as sqlfile:
         script = sqlfile.read()                
     scripts = split_go_to_batch(script)
+    f = open(r"d:\output-sql.txt",'w')
     for index,batch in enumerate(scripts):
         #print 'Executing the NO.{0} batch of update script'.format(index)
-        if((not batch.strip())or (batch.strip().upper()=="GO")):
+        if((batch.strip()) and (batch.strip().upper()!="GO")):
+          f.write('----------------------------------------------\n')
+          f.write(batch)
+          f.write('----------------------------------------------\n')
           cursor.execute(batch)
 
 def __main__(argv):    
